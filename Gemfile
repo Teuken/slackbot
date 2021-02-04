@@ -26,7 +26,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # ODM for mongodb
 gem 'mongoid'
-
+gem 'mini_service', '~> 0.3.0'
 gem 'oauth2'
 
 group :development, :test do

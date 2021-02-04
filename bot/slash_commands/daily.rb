@@ -74,11 +74,11 @@ SlackRubyBotServer::Events.configure do |config|
     slack_client.conversations_members({ channel: channel_id }).members.each do |user_id|
       channel_members << user_names[user_id] if user_names.key?(user_id)
     end
-
+    channel = slack_client.conversations_info({ channel: channel_id })
     meet_url = 'https://meet.google.com/ghr-xjdy-vik'
     date_formatted = Time.now.strftime('%B %e, %Y').capitalize
 
-    slack_client.chat_postMessage(format_message(channel_id, command[:channel_name], date_formatted, meet_url,
+    slack_client.chat_postMessage(format_message(channel_id, channel[:channel][:name], date_formatted, meet_url,
                                                  channel_members.shuffle!))
     nil
   end

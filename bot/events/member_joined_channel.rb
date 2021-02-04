@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 SlackRubyBotServer::Events.configure do |config|
   config.on :event, ['event_callback', 'member_joined_channel'] do |event|
     team = Team.find_by(team_id: event[:event][:team]) || raise("Cannot find team with ID #{event[:event][:team]}.")

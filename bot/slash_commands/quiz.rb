@@ -1,37 +1,39 @@
+# frozen_string_literal: true
+
 def quiz_message(question, channel_id)
   {
     channel: channel_id,
     "blocks": [
       {
-        "type": "section",
+        "type": 'section',
         "text": {
-          "type": "plain_text",
+          "type": 'plain_text',
           "text": question,
           "emoji": true
         }
       },
       {
-        "type": "actions",
+        "type": 'actions',
         "elements": [
           {
-            "type": "button",
+            "type": 'button',
             "text": {
-              "type": "plain_text",
-              "text": "Yes",
+              "type": 'plain_text',
+              "text": 'Yes',
               "emoji": true
             },
-            "value": "reply_yes",
-            "action_id": "reply_yes"
+            "value": 'reply_yes',
+            "action_id": 'reply_yes'
           },
           {
-            "type": "button",
+            "type": 'button',
             "text": {
-              "type": "plain_text",
-              "text": "No",
+              "type": 'plain_text',
+              "text": 'No',
               "emoji": true
             },
-            "value": "reply_no",
-            "action_id": "reply_no"
+            "value": 'reply_no',
+            "action_id": 'reply_no'
           }
         ]
       }
@@ -45,10 +47,10 @@ SlackRubyBotServer::Events.configure do |config|
     team_id = command[:team_id]
     channel_id = command[:channel_id]
     command.logger.info "Someone started a quiz in channel #{channel_id}."
-    question = "Can octopuses change their color? :octopus:"
-    team = Team.find_by(team_id: team_id)
-    slack_client = Slack::Web::Client.new(token: team.token)
-    slack_client.chat_postMessage(quiz_message question, channel_id)
+    question = 'Can octopuses change their color? :octopus:'
+    # team = Team.find_by(team_id: team_id)
+    slack_client = Slack::Web::Client.new(token: ENV['SLACK_TOKEN_OAUTH'])
+    slack_client.chat_postMessage(quiz_message(question, channel_id))
     nil
   end
 end

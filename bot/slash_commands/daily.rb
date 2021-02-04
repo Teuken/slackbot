@@ -68,7 +68,7 @@ SlackRubyBotServer::Events.configure do |config|
     command.logger.info "Someone started a quiz in channel #{channel_id}."
     slack_client = Slack::Web::Client.new(token: ENV['SLACK_TOKEN_OAUTH'])
     user_names = slack_client.users_list.members.reject { |m| m.profile.bot_id }.collect do |m|
-      [m.id, m.name]
+      [m.id, m.name.capitalize]
     end.to_h
     channel_members = []
     slack_client.conversations_members({ channel: channel_id }).members.each do |user_id|

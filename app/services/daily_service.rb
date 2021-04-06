@@ -43,7 +43,7 @@ class DailyService < MiniService::Base
 
   def user_names(slack_client)
     slack_client.users_list.members.reject { |m| m.profile.bot_id }.collect do |m|
-      [m.id, m.name.capitalize]
+      [m.id, m.name.split('.')[0].capitalize]
     end.to_h
   end
 

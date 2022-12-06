@@ -9,7 +9,7 @@ A domain(or a subdomain) is ready to host the application
 ### If you need to set up a new Slack app:
 
 1. Create a new app [here](https://api.slack.com/apps?new_app=1)
-2. Navigate to the **OAuth & Permissions** page and add the following **Bot Token Scopes**: 
+2. Navigate to the **OAuth & Permissions** page and add the following **Bot Token Scopes**:
 - `users:read`
 - `channels:read`
 - `groups:read`
@@ -18,7 +18,7 @@ A domain(or a subdomain) is ready to host the application
 - `incoming-webhook`  
   **BASE_URL** stands for https://slackbot-hosted-domain.com hereafter.  
   Use this url for **Redirect** : `BASE_URL`
-3. Activate **Interactivity & Shortcuts** and add this url: `BASE_URL/api/slack/action` 
+3. Activate **Interactivity & Shortcuts** and add this url: `BASE_URL/api/slack/action`
 4. Activate **Slash Commands** adding two slash commands `/ping`, `/quiz` and use this url: `BASE_URL/api/slack/command`
 5. Activate **Event Subscriptions** subscribing to the event type `member_joined_channel` and add this url: `BASE_URL/api/slack/event`(This step needs the application to be running :D so you can skip this and come back a few mins later)
 6. Navigate to the **App Home** page and toggle **Always Show My Bot as Online** (according to your reference)
@@ -43,6 +43,7 @@ Use this command to run the app on your server:
 ```bash
 rails s -e production -b 0.0.0.0
 ```
+a
 Open the **BASE_URL** in your browser
 
 ## Deployment
